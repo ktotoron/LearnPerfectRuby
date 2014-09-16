@@ -135,6 +135,44 @@ end
 alice = Alice_extends.new
 puts "Alice_extends.greet_to 'Alice_extends' :: #{Alice_extends.greet_to 'Alice_extends'}"
 
+puts "==========ModuleFunc=========="
+puts "Math.sqrt(4) :: #{Math.sqrt(4)}"
+include Math
+puts "sqrt(9) :: #{sqrt(9)}"
+
+
+module MyFunctions
+  def my_module_func
+    'Called'
+  end
+  module_function :my_module_func
+
+  # module関数のの複数定義
+  module_function
+  def my_module_func_1
+    'my_module_func_1'
+  end
+
+  def my_module_func_2
+    'my_module_func_2'
+  end
+end
+
+puts "MyFunctions.my_module_func :: #{MyFunctions.my_module_func}"
+puts "MyFunctions.my_module_func_1 :: #{MyFunctions.my_module_func_1}"
+puts "MyFunctions.my_module_func_2 :: #{MyFunctions.my_module_func_2}"
+
+# autoload :Class, 'file_name'
+# autoload :Module, 'file_name'
+
+puts "=========="
+
+
+
+
+
+
+
 
 
 
