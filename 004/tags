@@ -1,0 +1,50 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AccessTest	class.rb	/^class AccessTest$/;"	c
+Alice	module.rb	/^class Alice$/;"	c
+Child	class.rb	/^class Child < Parent$/;"	c
+ChildModule	module.rb	/^  module ChildModule$/;"	m	class:ModuleTest
+Foo	class.rb	/^class Foo$/;"	c
+FriendList	module.rb	/^class FriendList$/;"	c
+Greetable	module.rb	/^module Greetable$/;"	m
+ModuleTest	module.rb	/^module ModuleTest$/;"	m
+My	class.rb	/^class My$/;"	c
+My	class.rb	/^class My::Bar$/;"	c
+MyClass	class.rb	/^class MyClass$/;"	c
+Parent	class.rb	/^class Parent$/;"	c
+Rectangle	class.rb	/^class Rectangle$/;"	c
+Ruler	class.rb	/^class Ruler$/;"	c
+ScopeChild	class.rb	/^class ScopeChild < ScopeParent$/;"	c
+ScopeParent	class.rb	/^class ScopeParent$/;"	c
+Sw	class.rb	/^  class Sw$/;"	c	class:My
+args_test	class.rb	/^  def args_test(name)$/;"	f	class:Child
+args_test	class.rb	/^  def args_test(name)$/;"	f	class:Parent
+bake!	class.rb	/^  def bake!$/;"	f	class:MyClass
+baked?	class.rb	/^  def baked?$/;"	f	class:MyClass
+call_other_protected_method	class.rb	/^  def call_other_protected_method(other)$/;"	f	class:AccessTest
+greet	class.rb	/^  def greet$/;"	f	class:Child
+greet	class.rb	/^  def greet$/;"	f	class:Parent
+greet_to	module.rb	/^  def greet_to(name)$/;"	f	class:Greetable
+greet_to_override	module.rb	/^  def greet_to_override(name)$/;"	f	class:Alice
+greet_to_override	module.rb	/^  def greet_to_override(name)$/;"	f	class:Greetable
+initialize	class.rb	/^  def initialize$/;"	f	class:MyClass
+initialize	class.rb	/^  def initialize$/;"	f	class:Parent
+lot	module.rb	/^    def self.lot$/;"	F	class:ModuleTest.ChildModule
+lot	module.rb	/^  def self.lot$/;"	F	class:ModuleTest
+override_test	class.rb	/^  def override_test$/;"	f	class:Parent
+override_test	class.rb	/^  def override_test(name)$/;"	f	class:Child
+pair	class.rb	/^  def self.pair$/;"	F	class:Ruler
+private_method	class.rb	/^  def private_method$/;"	f	class:AccessTest
+private_method_call	class.rb	/^  def private_method_call$/;"	f	class:AccessTest
+protected_method	class.rb	/^  def protected_method$/;"	f	class:AccessTest
+public_method	class.rb	/^  def public_method$/;"	f	class:AccessTest
+say	class.rb	/^  def say$/;"	f	class:ScopeChild
+say	class.rb	/^  def self.say$/;"	F	class:ScopeParent
+singleton_method	class.rb	/^def bar.singleton_method$/;"	F
+trio	class.rb	/^    def trio$/;"	f	class:Ruler
+value	class.rb	/^    def self.value$/;"	F	class:My.Sw
+value	class.rb	/^  def self.value$/;"	F	class:My
