@@ -69,11 +69,31 @@ puts "==========pollution_object=========="
 puts Object.new.tainted?
 puts ENV['HOME'].tainted?
 # 汚染は引き継がれる
+rcfile = ENV['HOME'] + '/.zshrc'
+puts "rcfile.tainted? :: #{rcfile.tainted?}"
 
+# セーフレベル
 puts "$SAFE=#{$SAFE}"
 
+# $SAFE==1のとき汚染されたオブジェクトを使用してファイルの削除はできない
+# $SAFEは下げられない
+#
 
-
+level4_block = Proc.new {
+  begin
+    $SAFE = 1
+    puts "$SAFE = #{$SAFE}"
+    rcfile = ENV['HOME'] + '/.zshrc'
+    File.unlink rcfile
+  rescue SecurityError => e
+    puts "rescue :: #{e.class} :: #{e}"
+  ensure
+    # finally
+    puts "==========finally=========="
+    puts "$SAFE = #{$SAFE}"
+  end
+}
+level4_block.call
 
 
 
