@@ -586,6 +586,158 @@ puts "short >= long = #{short >= long}"
 puts "short == long = #{short == long}"
 puts "short != long = #{short != long}"
 
+puts "<=>の場合は"
+puts "a<b = -1"
+puts "a==b = 0"
+puts "a>b = 1"
+
+
+puts "==========Enumerable=========="
+puts "%w(Alice Bob Charlie).each_with_index do |name, index|"
+%w(Alice Bob Charlie).each_with_index do |name, index|
+  puts "#{index} : #{name}"
+end
+
+puts "(1..3).reverse_each do |val|"
+(1..3).reverse_each do |val|
+  print val, " "
+end
+
+puts "(1..5).each_slice 2 do |a, b|"
+(1..5).each_slice 2 do |a, b|
+  p [a, b]
+end
+
+puts "(1..4).each_cons 2 do |a, b|"
+(1..4).each_cons 2 do |a, b|
+  p [a, b]
+end
+
+# succメソッドがないのはエラーになる
+puts "(0.0..1.0).each_ do |f|"
+begin
+  (0.0..1.0).each_ do |f|
+    print f, " "
+  end
+rescue => e
+  puts "#{e.class}::#{e}"
+end
+
+puts "引数なしだと無限loop"
+puts "(1..3).cycle(2) do |n|"
+(1..3).cycle(2) do |n|
+  print n, " "
+end
+
+
+puts ""
+puts "p ['ruby', 'rails'].map {|str| str.upcase}"
+p ['ruby', 'rails'].map {|str| str.upcase}
+
+puts "==========map=========="
+puts "[true, true, true].all? = #{[true, true, true].all?}"
+puts "[false, true, true].all? = #{[false, true, true].all?}"
+
+puts "[false, false, false].none? = #{[false, false, false].none?}"
+puts "[true, true, false].any? = #{[true, true, false].any?}"
+puts "[false, false, false].any? = #{[false, false, false].any?}"
+puts "[true, false, false].one? = #{[true, false, false].one?}"
+
+print '[4, 4, 2, 3].all? {|v| v.is_a?(Integer)} = '
+puts "#{[4, 4, 2, 3].all? {|v| v.is_a?(Integer)}}"
+print '[4, 4, \'two\', 3].all? {|v| v.is_a?(Integer)} = '
+puts "#{[4, 4, 'two', 3].all? {|v| v.is_a?(Integer)}}"
+
+puts "%w(Alice Bob Charlie).grep(/a/i) = #{%w(Alice Bob Charlie).grep(/a/i)}"
+puts "['a', 'b', 3, 4].grep(String) = #{['a', 'b', 3, 4].grep(String)}"
+puts ""
+puts "Object.new.methods.grep(/\?/) = #{Object.new.methods.grep(/\?/)}"
+puts ""
+
+puts "[4,4,2,3].detect{|v|v.even?}} = #{[4,4,2,3].detect{|v|v.even?}}"
+puts "[4,4,2,3].select{|v|v.even?}} = #{[4,4,2,3].select{|v|v.even?}}"
+puts "[4,4,2,3].reject{|v|v.even?}} = #{[4,4,2,3].reject{|v|v.even?}}"
+
+puts "[1,2,3,4,5].take(3) = #{[1,2,3,4,5].take(3)}"
+puts "[1,2,3,4,5].drop(3) = #{[1,2,3,4,5].drop(3)}"
+
+array = [1,2,3,4,5]
+
+puts "array = #{array}"
+puts "array.take_while {|n| n < 3} = #{array.take_while {|n| n < 3}}"
+puts "array.drop_while{|n| n < 3} = #{array.drop_while{|n| n < 3}}"
+
+puts "[4,4,2,3].inject(0) {|result, num| = #{[4,4,2,3].inject(0) {|result, num| result + num }}"
+# シンボルを渡す
+puts "シンボルを渡す"
+puts "[4,4,2,3].inject(:+) = #{[4,4,2,3].inject(:+)}"
+
+# resultは引き継ぐ
+hash = %w(Alice Bob Charlie).each_with_object({}) {|name, result| result[name] = name.length }
+puts "%w(Alice Bob Charlie).each_with_object({}) {|name, result| result[name] = name.length } = #{hash}"
+
+# 要素のグルーピング
+array = [1, 2.0, 3, 4.0, 5]
+puts "ハッシュで分割"
+puts "array = #{array}"
+puts "array.group_by {|v| v.class} = #{array.group_by {|v| v.class}}"
+
+array = [1,2,3,4,5]
+puts "配列で分割"
+puts "array = #{array}"
+puts "array.partition{|v| v.even?} = #{array.partition{|v| v.even?}}"
+
+puts "==========Range=========="
+range = (1..10)
+puts "range = #{range}"
+puts "range.max = #{range.max}"
+puts "range.min= #{range.min}"
+puts "range.minmax = #{range.minmax}"
+
+
+people = %w(Alice Bob Charlie)
+puts "people = #{people}"
+puts "people.min_by {|s| s.length} = #{people.min_by {|s| s.length}}"
+puts "people.max_by {|s| s.length} = #{people.max_by {|s| s.length}}"
+puts "people.minmax_by {|s| s.length} = #{people.minmax_by {|s| s.length}}"
+
+people = %w(Bob Alice Charlie)
+puts "people.sort = #{people.sort}"
+puts "people.sort {|a, b| a.length <=> b.length} = #{people.sort {|a, b| a.length <=> b.length}}"
+puts "people.sort_by {|a| a.length} = #{people.sort_by {|a| a.length}}"
+
+puts "==========Array=========="
+puts "Array.new(5,1) = #{Array.new(5,1)}"
+
+array = Array.new(5, 'naive')
+puts "array = #{array}"
+
+puts "array[0].reverse! = #{array[0].reverse!}"
+puts "array = #{array}"
+
+array = Array.new(3) {|i| i.succ}
+puts "array = Array.new(3) {|i| i.succ}"
+puts "array = #{array}"
+
+puts "Array('Alice') = #{Array('Alice')}"
+puts "Array([Alice]) = #{Array([Alice])}"
+puts "Array#to_a = self"
+
+puts "array.include?(2) = #{array.include?(2)}"
+puts "[1,2,3]+[4,5] = #{[1,2,3]+[4,5]}"
+
+array = [1,2,3,4,5]
+puts "array = #{array}"
+puts "array.values_at(1) = #{array.values_at(1)}"
+puts "array.values_at(1,3) = #{array.values_at(1,3)}"
+puts "array.first = #{array.first}"
+puts "先頭から2個取得"
+puts "array.first(2) = #{array.first(2)}"
+puts "array.last = #{array.last}"
+puts "array.last(2) = #{array.last(2)}"
+
+
+
 
 
 
