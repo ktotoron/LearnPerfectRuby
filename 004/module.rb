@@ -862,6 +862,83 @@ puts "array.reverse.hash = #{array.reverse.hash}"
 hash = {one: 1, two: 2}
 puts "hash = #{hash}"
 
+puts "hash.each do |k, v|"
+hash.each do |k, v|
+  puts "#{k}::#{v}"
+end
+
+puts "hash.each_key do |k|"
+hash.each_key do |k|
+  print "#{k},"
+end
+puts
+
+puts "hash.each_value do |v|"
+hash.each_value do |v|
+  print "#{v},"
+end
+puts 
+
+puts
+hash = {}
+puts "hash[:foo] = 'bar' = #{hash[:foo] = 'bar'}"
+puts "hash = #{hash}"
+puts "hash.delete(:foo) = #{hash.delete(:foo)}"
+
+puts
+hash = {one: 1, two: 2, three: 3, four: 4, five: 5}
+puts "hash.select {|k, v| v.odd?} = #{hash.select {|k, v| v.odd?}}"
+puts "hash.reject {|k, v| v.odd?} = #{hash.reject {|k, v| v.odd?}}"
+
+puts
+puts "==trueのとき残す"
+hash = {one: 1, two: 2, three: 3, four: 4, five: 5}
+puts "hash = #{hash}"
+puts "hash.keep_if {|k, v| v.odd?} = #{hash.keep_if {|k, v| v.odd?}}"
+
+puts "==trueのとき消す"
+hash = {one: 1, two: 2, three: 3, four: 4, five: 5}
+puts "hash = #{hash}"
+puts "hash.delete_if {|k, v| v.odd?} = #{hash.delete_if {|k, v| v.odd?}}"
+
+puts
+puts "==========HashMerge=========="
+hash_a = {one: 1, two: 21}
+hash_b = {three: 3, two: 22}
+puts "hash_a = #{hash_a}"
+puts "hash_b = #{hash_b}"
+puts "hash_a.merge(hash_b) = #{hash_a.merge(hash_b)}"
+
+def keywords(hash = {})
+  defaults = {alice: 'a', bob: 'b'}
+  hash = defaults.merge(hash)
+  hash
+end
+
+puts "keywords({alice: 'Alice'}) = #{keywords({alice: 'Alice'})}"
+puts "{one: 1, two: 2}.invert = #{{one: 1, two: 2}.invert}"
+puts "どちらか消える"
+puts "{one: 1, two: 1}.invert = #{{one: 1, two: 1}.invert}"
+
+puts
+hash = {one: 1, two: 2, three: 3, four: 4, five: 5}
+puts "hash = #{hash}"
+puts "Key_Exist"
+puts "hash.has_key?(:one) = #{hash.has_key?(:one)}"
+puts "hash.key?(:one) = #{hash.key?(:one)}"
+puts "hash.member?(:one) = #{hash.member?(:one)}"
+puts "hash.include?(:one) = #{hash.include?(:one)}"
+puts
+puts "Value_Exist"
+puts "hash.has_value?(2) = #{hash.has_value?(2)}"
+puts "hash.value?(2) = #{hash.value?(2)}"
+
+puts
+puts "hash.key(3) = #{hash.key(3)}"
+puts "hash.keys = #{hash.keys}"
+puts "hash.values = #{hash.values}"
+puts "hash.values_at(:three, :one) = #{hash.values_at(:three, :one)}"
+
 
 
 
