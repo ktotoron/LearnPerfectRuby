@@ -725,9 +725,17 @@ puts "Array#to_a = self"
 
 puts "array.include?(2) = #{array.include?(2)}"
 puts "[1,2,3]+[4,5] = #{[1,2,3]+[4,5]}"
+puts "[4,4,2,3] - [4,3] = #{[4,4,2,3] - [4,3]}"
+puts "[1,2,3] & [2,3,4] = #{[1,2,3] & [2,3,4]}"
+puts "[1,2,3]*2 = #{[1,2,3]*2}"
 
 array = [1,2,3,4,5]
 puts "array = #{array}"
+puts "array[2] = #{array[2]}"
+# 開始位置
+# 長さ
+puts "array[2,2] = #{array[2,2]}"
+puts "array[0..2] = #{array[0..2]}"
 puts "array.values_at(1) = #{array.values_at(1)}"
 puts "array.values_at(1,3) = #{array.values_at(1,3)}"
 puts "array.first = #{array.first}"
@@ -736,54 +744,123 @@ puts "array.first(2) = #{array.first(2)}"
 puts "array.last = #{array.last}"
 puts "array.last(2) = #{array.last(2)}"
 
+puts "=====Random====="
+puts "array.sample = #{array.sample}"
+puts "array.sample(2) = #{array.sample(2)}"
 
 
+puts "==========Array=========="
+ary = [ [:foo,4], [:bar, 2], [:bazz,3] ]
+puts "ary = #{ary}"
+puts "ary.assoc(:bar) = #{ary.assoc(:bar)}"
 
+array = [1,2,3,4,5]
+puts "array = #{array}"
+puts "array[10] = 100 = #{array[10] = 100}"
+puts "array = #{array}"
 
+puts "array << 11 = #{array << 11}"
+puts "array = #{array}"
+puts "array.push 12 = #{array.push 12}"
+puts "array = #{array}"
+puts "array.pop = #{array.pop}"
+puts "array = #{array}"
 
+puts "array.unshift 0 = #{array.unshift 0}"
+puts "array = #{array}"
+puts "array.shift = #{array.shift}"
+puts "array = #{array}"
 
+puts ""
+puts "select!, reject!は変更がない場合はnilを返す"
+array = [1,2,3,4,5]
+puts "array = #{array}"
+puts "array.select! {|v| v.even?} = #{array.select! {|v| v.even?}}"
 
+array = [1,2,3,4,5]
+puts "array = #{array}"
+puts "array.reject! {|v| v.even?} = #{array.reject! {|v| v.even?}}"
 
+puts ""
+puts "delete_if, keep_ifは値を返す"
+array = [1,2,3,4,5]
+puts "array = #{array}"
+puts "array.delete_if {|v| false}} = #{array.delete_if {|v| false}}"
+puts "array.keep_if{|v| true}} = #{array.keep_if{|v| true}}"
 
+puts ""
+array = [1,2.0,3,2,5]
+puts "array = #{array}"
+puts "array.delete 2 = #{array.delete 2}"
+puts "array = #{array}"
 
+puts ""
+array = [1,2.0,3,2,5]
+puts "array = #{array}"
+puts "array.delete_at 3 = #{array.delete_at 3}"
+puts "array = #{array}"
 
-#puts "#{}"
+puts ""
+array = [1,2,nil,4,5,nil,nil,9]
+puts "array = #{array}"
+puts "array.compact = #{array.compact}"
 
+puts ""
+array = [1,1,2,2,3,3,4,5,6,3,8,9]
+puts "array = #{array}"
+puts "array.uniq = #{array.uniq}"
 
+puts ""
+array = [1,1,2,2,3,3,4,5,6,3,8,9]
+puts "array = #{array}"
+puts "array.reverse = #{array.reverse}"
 
+puts ""
+array = [[1,1],[2,2],3,3,4,5,6,[7,8,9]]
+puts "array = #{array}"
+puts "array.flatten = #{array.flatten}"
 
+puts ""
+array = [10,111,223,24,3,3,4,5,6,3,8,9]
+puts "array = #{array}"
+puts "array.sort = #{array.sort}"
 
+puts ""
+array = ['fo', 'foooooo', 'foo']
+puts "array = #{array}"
+puts "array.sort_by {|v| v.length} = #{array.sort_by {|v| v.length}}"
 
+puts ""
+people = %w(Alice Bob Charlie)
+puts "people.map {|p| p.upcase} = #{people.map {|p| p.upcase}}"
 
+puts
+array = [['a','b','c'], [1,2,3]]
+puts "array = #{array}"
+puts "2次元配列でない場合はTypeError"
+puts "要素数が違う場合はIndexError"
+puts "array.transpose = #{array.transpose}"
 
+puts
+array = [1, 'a']
+puts "array = #{array}"
+puts "array.zip([2,'b'], [3, 'c']) = #{array.zip([2,'b'], [3, 'c'])}"
 
+puts "==========BinarySearch=========="
+array = [1,3,5,7,9]
+puts "array = #{array}"
+puts "array.bsearch {|n| n > 6} = #{array.bsearch {|n| n > 6}}"
+puts "array.bsearch {|n| n > 10} = #{array.bsearch {|n| n > 10}}"
+puts "array.join('-') = #{array.join('-')}"
 
+puts 
+puts "==========Hash=========="
+puts "array = #{array}"
+puts "array.hash = #{array.hash}"
+puts "array.reverse.hash = #{array.reverse.hash}"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+hash = {one: 1, two: 2}
+puts "hash = #{hash}"
 
 
 
