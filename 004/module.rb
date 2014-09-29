@@ -939,7 +939,213 @@ puts "hash.keys = #{hash.keys}"
 puts "hash.values = #{hash.values}"
 puts "hash.values_at(:three, :one) = #{hash.values_at(:three, :one)}"
 
+three, two = hash.values_at(:three, :two)
+puts "three = #{three}, two = #{two}"
 
+puts "==========default_value=========="
+puts 'has_default = Hash.new(\'undefined\')'
+has_default = Hash.new('undefined')
+puts "has_default['foo'] = #{has_default['foo']}"
+puts "has_default['foo'].reverse! = #{has_default['foo'].reverse!}"
+puts "has_default['oo'] = #{has_default['oo']}"
+puts
+
+puts "===== BlockArgment ====="
+counter = 0
+puts "Time.nowでもOK"
+has_default = Hash.new {|hash, key| counter += 1 }
+puts "has_default[:foo] = #{has_default[:foo]}"
+puts "has_default[:foo] = #{has_default[:foo]}"
+
+puts
+puts "has_default = {} = #{has_default = {}}"
+puts "has_default['foo'] = #{has_default['foo']}"
+has_default.default = 'bar'
+puts "has_default['foo'] = #{has_default['foo']}"
+
+puts
+puts "set:default_proc"
+puts 'has_default.default_proc = ->(hash, key) {Time.now}'
+has_default.default_proc = ->(hash, key) {Time.now}
+puts "has_default['foo'] = #{has_default['foo']}"
+
+puts "==========hash_fetch=========="
+hash_fetch = {}
+puts hash_fetch.fetch('foo', 'default')
+puts hash_fetch.fetch('foo') {|key| key}
+begin
+  puts hash_fetch.fetch('foo')
+rescue => e
+  puts "#{e.class}::#{e}"
+end
+
+
+puts "==========hash_to_array=========="
+a = {one: 1, two: 2}.to_a
+puts "{one: 1, two: 2}.to_a = #{{one: 1, two: 2}.to_a}"
+puts "a.assoc(:one) = #{a.assoc(:one)}"
+array = ['A', 1, 'B', 2] 
+puts "array = #{array}"
+puts "Hash[*array] = #{Hash[*array]}"
+
+puts
+array = [['C', 3], ['D', 4]]
+puts "array = #{array}"
+puts "Hash[*array] = #{Hash[*array]}"
+
+
+puts "==========Enumerator=========="
+puts "return EnumaratorObject"
+puts "[].each                        =  #{ [].each}"
+puts "{}.each                        =  #{ {}.each}"
+puts "(1..10).each                   =  #{ (1..10).each}"
+puts "''.each_char                   =  #{ ''.each_char}"
+puts "10.times                       =  #{ 10.times}"
+puts "loop                           =  #{ loop}"
+puts "[1,2,3].to_enum                =  #{[1,2,3].to_enum}"
+puts "'Alice'.enum_for(:each_char)   =  #{'Alice'.enum_for(:each_char)}"
+
+lines = <<EOM
+Alice
+Bob
+Charlie
+EOM
+puts "<lines>\n#{lines}</lines>"
+enum = lines.each_line
+puts "enum.map {|l| l.length } = #{enum.map {|l| l.length }}"
+
+%w(Alice Bob Charlie).each.with_index do |name, index|
+  print "{#{index}::#{name}} "
+end
+
+puts '%w(Alice Bob Charlie).select.with_index {|name, index| index > 1}'
+puts "#{%w(Alice Bob Charlie).select.with_index {|name, index| index > 1}}"
+enum = [4, 1, 2, 3].to_enum
+puts "enum = #{enum}"
+print "enum.map {|d| d} = #{enum.map {|d| d}}"
+puts
+puts "==enum.next=="
+puts "enum.next = #{enum.next}"
+puts "enum.next = #{enum.next}"
+puts "enum.rewind = #{enum.rewind}"
+puts "enum.next = #{enum.next}"
+
+puts
+puts "==loop=="
+loop do
+  print enum.next, " "
+end
+
+puts
+puts "=====loop_is_catch_StopIteration====="
+people = %w(Alice Bob Charlie).to_enum
+age = [1, 4].to_enum
+loop do
+  puts "#{people.next} (#{age.next})"
+end
+
+enum = %w(Alice Bob Charlie).select
+# /li/ match
+puts "==========match_/li/=========="
+loop do
+  begin
+    ps = enum.next
+    enum.feed /li/ === ps # blockの戻り値になる
+  rescue StopIteration => e
+    # 返却値
+    p e.result
+    break
+  end
+end
+
+puts "==========Enumerator::Lazy(遅延評価)=========="
+puts "すべての要素をなめなくてはいけないので時間がかかる"
+puts '(0..Float::INFINITY).map {|n| n.succ}.select {|n| n.odd?}.take(3)'
+puts
+
+puts '(0..Float::INFINITY).lazy.map {|n| n.succ}.select {|n| n.odd?}.take(3)'
+odd_numbers = (0..Float::INFINITY).lazy.map {|n| n.succ}.select {|n| n.odd?}.take(3)
+puts "odd_numbers.force = #{odd_numbers.force}"
+
+puts "<Check_Lazy>"
+(0..Float::INFINITY).lazy.map {|n|
+  puts "lazy.map #{n}"
+  n.succ
+}.select {|n|
+  puts "select #{n}"
+  n.odd?
+}.take(3).force
+puts "</Check_Lazy>"
+
+
+puts
+puts "==========Time=========="
+puts "Time.now = #{Time.now}"
+puts "Time.now.zone = #{Time.now.zone}"
+puts "Time.now.getutc= #{Time.now.getutc}"
+now = Time.now
+puts "now = #{now}"
+puts "now.to_i = #{now.to_i}"
+puts "now.to_f = #{now.to_f}"
+puts "now.to_r = #{now.to_r}"
+puts "now.to_s = #{now.to_s}"
+
+puts
+puts "now.year       #{now.year}"
+puts "now.month      #{now.month}"
+puts "now.day        #{now.day}"
+puts "now.hour       #{now.hour}"
+puts "now.min        #{now.min}"
+puts "now.sec        #{now.sec}"
+puts "now.nsec       #{now.nsec}"
+puts "now.wday       #{now.wday}"
+puts '1月1日=1'
+puts "now.yday       #{now.yday}"
+
+puts
+puts "==========CompareTime=========="
+a = Time.now
+b = Time.now
+puts "a = #{a}"
+puts "b = #{b}"
+puts "a == b = #{a == b}"
+puts "a.nsec = #{a.nsec}"
+puts "b.nsec = #{b.nsec}"
+
+puts
+puts " a<=>b       =    #{a<=>b   }"
+puts " a < b       =    #{a < b   }"
+puts " a <= b      =    #{a <= b  }"
+puts " a > b       =    #{a > b   }"
+puts " a >= b      =    #{a >= b  }"
+puts " b - a       =    #{b - a   }"
+puts " b + 1       =    #{b + 1   }"
+
+puts "==========TimeObject=========="
+puts "Time.at(0) = #{Time.at(0)}"
+puts "Time.at(0).getutc = #{Time.at(0).getutc}"
+puts "Time.at(-10000000000).getutc = #{Time.at(-10000000000)}"
+puts "Time.at(+10000000000).getutc = #{Time.at(+10000000000)}"
+puts "Time.utc(2011, 4, 1, 5, 30, 20, 100) = #{Time.utc(2011, 4, 1, 5, 30, 20, 100)}"
+puts "Time.utc(2011) = #{Time.utc(2011)}"
+puts "Time.local(2011, 4, 1, 5, 30, 20, 100) = #{Time.local(2011, 4, 1, 5, 30, 20, 100)}"
+puts "Time.local(2011) = #{Time.local(2011)}"
+
+args = Time.now.to_a
+puts "Time.now.to_a = #{Time.now.to_a}"
+puts "Time.utc(*args) = #{Time.utc(*args)}"
+puts "Time.local(*args) = #{Time.local(*args)}"
+
+puts "==========Time_String=========="
+puts "Time.now.strftime('%Y/%m/%d %H:%M:%S') = #{Time.now.strftime('%Y/%m/%d %H:%M:%S')}"
+
+
+
+
+
+
+# %w(Alice Bob Charlie)
+# %w(Alice Bob Charlie)
 
 
 
