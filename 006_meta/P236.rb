@@ -15,11 +15,15 @@ class Klass
 
 end
 
+class FKlass
+  @class_instance_val = :class_instance_val
+  @@class_val = :class_val
+end
 
-
-
-
-
+class SKlass < FKlass
+  @class_instance_val #=> nil
+  @@class_val #=> :class_val
+end
 
 
 
