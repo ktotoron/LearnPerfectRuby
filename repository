@@ -1,0 +1,5 @@
+git clone git@github.com:ktotoron/LearnPerfectRuby.git
+git checkout -b Release origin/Release
+git checkout -b Devel origin/Devel
+
+
